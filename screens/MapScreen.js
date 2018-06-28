@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { MapView } from 'expo';
 
 class MapScreen extends Component {
@@ -12,12 +12,19 @@ class MapScreen extends Component {
 		}
 	}
 
+	onRegionChangeComplete = (region) => {
+		console.log(region);
+		this.setState({ region });
+		AsyncStorage.removeItem('fb_token');
+	}
+
 	render() {
 		return (
 			<View style={{ flex: 1 }}>
 				<MapView 
 					region={this.state.region}
 					style={{ flex: 1 }}
+					onRegionChangeComplete={this.onRegionChangeComplete}
 				/>
 			</View>
 		);
