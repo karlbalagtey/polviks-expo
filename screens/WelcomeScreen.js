@@ -5,9 +5,9 @@ import { AppLoading } from 'expo';
 import Slides from '../components/Slides';
 
 const SLIDE_DATA = [
-	{ text: 'Polviks Core', color: '#03A9F4' },
-	{ text: 'Starter boilerplate', color: '#009688' },
-	{ text: 'Begin developing', color: '#03A9F4' }
+	{ text: 'Welcome to Polviks Core', color: '#03A9F4' },
+	{ text: 'A Starter Boilerplate project based on React Native & Expo for rapid mobile app development. Swipe left to continue', color: '#009688' },
+	{ text: 'Lets begin', color: '#03A9F4' }
 ];
 
 class WelcomeScreen extends Component {

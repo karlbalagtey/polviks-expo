@@ -37,28 +37,15 @@ class Slides extends Component {
 				    	title='Log in'
 				    	style={[styles.buttonStyle, { marginBottom: 50 }]}
 				    	buttonStyle={{ borderRadius: 5 }}
+				    	onPress={this.props.onButtonComplete}
 				    />
 				    <Text>Log in with</Text>
-				    <View style={{flexDirection: 'row'}}>
-						<Icon
-							raised
-							name='facebook'
-							type='font-awesome'
-							onPress={this.props.onComplete}
-						/>
-						<Icon
-							raised
-							name='instagram'
-							type='font-awesome'
-							onPress={this.props.onComplete}
-						/>
-						<Icon
-							raised
-							name='google'
-							type='font-awesome'
-							onPress={this.props.onComplete}
-						/>
-					</View>
+					<Icon
+						raised
+						name='facebook'
+						type='font-awesome'
+						onPress={this.props.onComplete}
+					/>
 				</View>
 			);
 		}
