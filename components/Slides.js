@@ -20,6 +20,10 @@ import { TextButton } from './TextButton';
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
+	state = {
+		username: '',
+		email: '',
+	};
 
 	renderLastSlide(index) {
 
@@ -32,25 +36,30 @@ class Slides extends Component {
 							inputStyle={styles.formInputStyle} 
 							placeholder="Username" 
 							containerStyle={{ borderBottomWidth: 0 }}
+							onChangeText={(username) => this.setState({username})}
+							value={this.state.username}
 						/>
 					    <FormInput 
+					    	secureTextEntry
 					    	inputStyle={styles.formInputStyle} 
 					    	placeholder="Password"
 							containerStyle={{ borderBottomWidth: 0 }} 
+							onChangeText={(password) => this.setState({password})}
+							value={this.state.password}
 					    />
 					    <Button 
 					    	raised
 					    	title='Log in'
 					    	style={[styles.buttonStyle, {marginBottom: 20}]}
 					    	buttonStyle={{ borderRadius: 5, backgroundColor: '#3f6184' }}
-					    	onPress={this.props.onButtonComplete}
+					    	onPress={this.props.onLogin}
 					    />
 					    <TextButton 
 							style={{
 								color: 'black', 
 								height: 100
 							}} 
-							onPress={this.props.onRegister} 
+							onPress={this.props.resetPassword} 
 							value={'Forgot password?'} 
 						/>
 					</View>

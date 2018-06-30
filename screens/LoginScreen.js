@@ -6,12 +6,38 @@ import {
 	Image 
 } from 'react-native';
 import { AppLoading } from 'expo';
+import axios from 'axios';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
 
-class AuthScreen extends Component {
+class LoginScreen extends Component {
+	state = { 
+		username: '',
+		password: '',
+	};
+
 	componentDidMount() {
-		this.props.facebookLogin();
+		const url = 'https://core.polviks.com/oauth/token',
+			  clientId = 2,
+			  clientSecret = 'it9JnVWEwfYqHBGOkixncH3OKyyPzbx3FHsqKef3',
+			  grantType = 'password',
+			  providers = 'customers';
+
+		axios.post(url, {
+			client_id: clientId,
+			client_secret: clientSecret,
+			grant_type: grantType,
+			providers: providers,
+			username: this.state.username,
+			password: this.state.password,
+		})
+		.then(function(response) {
+			console.log(response);
+		})
+		.catch(function(error) {
+			console.log(error);
+		});
+
 		this.onAuthComplete(this.props);
 	}
 
@@ -41,4 +67,4 @@ function mapStateToProps({ auth }) {
 	return { token: auth.token };
 }
 
-export default connect(mapStateToProps, actions)(AuthScreen);
+export default connect(mapStateToProps, actions)(LoginScreen);

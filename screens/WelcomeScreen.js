@@ -36,13 +36,21 @@ class WelcomeScreen extends Component {
 		this.props.navigation.navigate('Register');
 	}
 
+	onLoggingIn = () => {
+		this.props.navigation.navigate('Login');
+	}
+
+	forgotPassword = () => {
+		this.props.navigation.navigate('Forgot');
+	}
+
 	render() {
 		if (_.isNull(this.state.token)) {
 			return <AppLoading />
 		}
 
 		return (
-			<Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} onRegister={this.onRegisterPress} />
+			<Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} onRegister={this.onRegisterPress} resetPassword={this.forgotPassword} onLogin={this.onLoggingIn}/>
 		);
 	}
 }
