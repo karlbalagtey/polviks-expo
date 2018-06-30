@@ -3,7 +3,8 @@ import {
 	View, 
 	Text, 
 	ScrollView,
-	Dimensions 
+	Dimensions,
+	Image
 } from 'react-native';
 
 import { 
@@ -14,38 +15,73 @@ import {
 	FormValidationMessage 
 } from 'react-native-elements';
 
+import { TextButton } from './TextButton';
+
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
 
 	renderLastSlide(index) {
+
 		if (index === this.props.data.length - 1) {
 			return (
-				<View style={styles.formStyle}>
-					<FormInput 
-						inputStyle={styles.formInputStyle} 
-						placeholder="Username" 
-						containerStyle={{ borderBottomWidth: 0 }}
-					/>
-				    <FormInput 
-				    	inputStyle={styles.formInputStyle} 
-				    	placeholder="Password"
-						containerStyle={{ borderBottomWidth: 0 }} 
-				    />
-				    <Button 
-				    	raised
-				    	title='Log in'
-				    	style={[styles.buttonStyle, { marginBottom: 50 }]}
-				    	buttonStyle={{ borderRadius: 5 }}
-				    	onPress={this.props.onButtonComplete}
-				    />
-				    <Text>Log in with</Text>
-					<Icon
-						raised
-						name='facebook'
-						type='font-awesome'
-						onPress={this.props.onComplete}
-					/>
+				<View>
+					<View style={[styles.formStyle, {marginBottom: 30}]}>
+						<Image style={{marginBottom: 50}}source={require('../assets/icon.png')} />
+						<FormInput 
+							inputStyle={styles.formInputStyle} 
+							placeholder="Username" 
+							containerStyle={{ borderBottomWidth: 0 }}
+						/>
+					    <FormInput 
+					    	inputStyle={styles.formInputStyle} 
+					    	placeholder="Password"
+							containerStyle={{ borderBottomWidth: 0 }} 
+					    />
+					    <Button 
+					    	raised
+					    	title='Log in'
+					    	style={[styles.buttonStyle, {marginBottom: 20}]}
+					    	buttonStyle={{ borderRadius: 5, backgroundColor: '#3f6184' }}
+					    	onPress={this.props.onButtonComplete}
+					    />
+					    <TextButton 
+							style={{
+								color: 'black', 
+								height: 100
+							}} 
+							onPress={this.props.onRegister} 
+							value={'Forgot password?'} 
+						/>
+					</View>
+					<View style={{
+						alignItems: 'center', 
+						justifyContent: 'space-around',
+						marginBottom: 50
+					}}>
+					    <Text>Log in with</Text>
+						<Icon
+							raised
+							name='facebook'
+							color='white'
+							containerStyle={{backgroundColor: '#3B5998'}}
+							type='font-awesome'
+							onPress={this.props.onComplete}
+						/>
+					</View>
+					<View style={{
+						alignItems: 'center', 
+						justifyContent: 'space-around'
+					}}>
+						<TextButton 
+							style={{
+								color: 'black', 
+								height: 100
+							}} 
+							onPress={this.props.onRegister} 
+							value={'Register'} 
+						/>
+					</View>
 				</View>
 			);
 		}
@@ -91,7 +127,7 @@ const styles = {
 		color: 'white'
 	},
 	buttonStyle: {
-		backgroundColor: '#0288D1',
+		backgroundColor: '#3F6184',
 		marginTop: 5,
 		width: 300,
 		borderRadius: 5
@@ -103,7 +139,7 @@ const styles = {
 		margin: 10
 	},
 	formInputStyle: {
-		backgroundColor: 'white', 
+		backgroundColor: '#f5f5f5', 
 		padding: 10, 
 		width: 300, 
 		borderRadius: 5,

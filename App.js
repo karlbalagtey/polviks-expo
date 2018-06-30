@@ -13,13 +13,18 @@ import MapScreen from './screens/MapScreen';
 import DeckScreen from './screens/DeckScreen';
 import SettingsScreen from './screens/SettingsScreen';
 import ReviewScreen from './screens/ReviewScreen';
+import RegisterScreen from './screens/RegisterScreen';
 
 export default class App extends React.Component {
     render() {
         const MainNavigator = createBottomTabNavigator({
-            Welcome: WelcomeScreen,
-            Auth: AuthScreen,
-
+            AuthStack: {
+                screen: createStackNavigator({
+                    Welcome: WelcomeScreen,
+                    Auth: AuthScreen,
+                    Register: RegisterScreen
+                })
+            },
             Main: {
                 screen: createBottomTabNavigator({
                     Map: MapScreen,
@@ -36,7 +41,8 @@ export default class App extends React.Component {
             navigationOptions: {
                 tabBarVisible: false
             },
-            lazy: true
+            lazy: true,
+            initialRouteName: 'AuthStack'
         });
 
         return (
@@ -53,7 +59,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: '#fff',
-        // alignItems: 'center',
         justifyContent: 'center',
     },
 });

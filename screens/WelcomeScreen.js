@@ -7,10 +7,14 @@ import Slides from '../components/Slides';
 const SLIDE_DATA = [
 	{ text: 'Welcome to Polviks Core', color: '#03A9F4' },
 	{ text: 'A Starter Boilerplate project based on React Native & Expo for rapid mobile app development. Swipe left to continue', color: '#009688' },
-	{ text: 'Lets begin', color: '#03A9F4' }
+	{ text: 'Lets begin', color: '#fff' }
 ];
 
 class WelcomeScreen extends Component {
+	static navigationOptions = ({ navigation }) => ({
+		header: null	
+	});
+
 	state = { token: null }
 
 	async componentWillMount() {
@@ -28,13 +32,17 @@ class WelcomeScreen extends Component {
 		this.props.navigation.navigate('Auth');
 	}
 
+	onRegisterPress = () => {
+		this.props.navigation.navigate('Register');
+	}
+
 	render() {
 		if (_.isNull(this.state.token)) {
 			return <AppLoading />
 		}
 
 		return (
-			<Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} />
+			<Slides data={SLIDE_DATA} onComplete={this.onSlidesComplete} onRegister={this.onRegisterPress} />
 		);
 	}
 }
