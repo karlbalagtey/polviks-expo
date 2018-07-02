@@ -4,7 +4,8 @@ import {
 	Text, 
 	ScrollView,
 	Dimensions,
-	Image
+	Image,
+	Alert
 } from 'react-native';
 
 import { 
@@ -15,82 +16,25 @@ import {
 	FormValidationMessage 
 } from 'react-native-elements';
 
+import { connect } from 'react-redux';
+import * as actions from '../actions';
 import { TextButton } from './TextButton';
 
 const SCREEN_WIDTH = Dimensions.get('window').width;
 
 class Slides extends Component {
-	state = {
-		username: '',
-		email: '',
-	};
 
 	renderLastSlide(index) {
-
 		if (index === this.props.data.length - 1) {
 			return (
 				<View>
-					<View style={[styles.formStyle, {marginBottom: 30}]}>
-						<Image style={{marginBottom: 50}}source={require('../assets/icon.png')} />
-						<FormInput 
-							inputStyle={styles.formInputStyle} 
-							placeholder="Username" 
-							containerStyle={{ borderBottomWidth: 0 }}
-							onChangeText={(username) => this.setState({username})}
-							value={this.state.username}
-						/>
-					    <FormInput 
-					    	secureTextEntry
-					    	inputStyle={styles.formInputStyle} 
-					    	placeholder="Password"
-							containerStyle={{ borderBottomWidth: 0 }} 
-							onChangeText={(password) => this.setState({password})}
-							value={this.state.password}
-					    />
-					    <Button 
-					    	raised
-					    	title='Log in'
-					    	style={[styles.buttonStyle, {marginBottom: 20}]}
-					    	buttonStyle={{ borderRadius: 5, backgroundColor: '#3f6184' }}
-					    	onPress={this.props.onLogin}
-					    />
-					    <TextButton 
-							style={{
-								color: 'black', 
-								height: 100
-							}} 
-							onPress={this.props.resetPassword} 
-							value={'Forgot password?'} 
-						/>
-					</View>
-					<View style={{
-						alignItems: 'center', 
-						justifyContent: 'space-around',
-						marginBottom: 50
-					}}>
-					    <Text>Log in with</Text>
-						<Icon
-							raised
-							name='facebook'
-							color='white'
-							containerStyle={{backgroundColor: '#3B5998'}}
-							type='font-awesome'
-							onPress={this.props.onComplete}
-						/>
-					</View>
-					<View style={{
-						alignItems: 'center', 
-						justifyContent: 'space-around'
-					}}>
-						<TextButton 
-							style={{
-								color: 'black', 
-								height: 100
-							}} 
-							onPress={this.props.onRegister} 
-							value={'Register'} 
-						/>
-					</View>
+				    <Button 
+				    	raised
+				    	title='Start'
+				    	style={[styles.buttonStyle, {marginBottom: 20}]}
+				    	buttonStyle={{ borderRadius: 5, backgroundColor: '#3f6184' }}
+				    	onPress={this.props.onLogin}
+				    />
 				</View>
 			);
 		}
@@ -103,6 +47,7 @@ class Slides extends Component {
 					key={slide.text} 
 					style={[styles.slideStyle, { backgroundColor: slide.color }]}
 				>
+					<Image style={{marginBottom: 20}} source={require('../assets/icons/4klogo-76.png')} />
 					<Text style={styles.textStyle}>{slide.text}</Text>
 					{this.renderLastSlide(index)}
 				</View>
@@ -133,7 +78,9 @@ const styles = {
 	},
 	textStyle: {
 		fontSize: 30,
-		color: 'white'
+		color: 'white',
+		marginBottom: 20,
+		textAlign: 'center'
 	},
 	buttonStyle: {
 		backgroundColor: '#3F6184',
@@ -142,18 +89,10 @@ const styles = {
 		borderRadius: 5
 
 	},
-	formStyle: {
-		justifyContent: 'center',
-		alignItems: 'center',
-		margin: 10
-	},
-	formInputStyle: {
-		backgroundColor: '#f5f5f5', 
-		padding: 10, 
-		width: 300, 
-		borderRadius: 5,
-		margin: 5
-	}
 };
 
-export default Slides;
+function mapStateToProps({ auth }) {
+	return { token: auth.token, error: auth.error };
+}
+
+export default connect(mapStateToProps, actions)(Slides);

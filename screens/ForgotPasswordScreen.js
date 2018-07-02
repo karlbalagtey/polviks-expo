@@ -20,8 +20,8 @@ class ForgotPasswordScreen extends Component {
 			<View>
 				<View style={styles.formStyle}>
 					<Image 
-						style={{marginBottom: 50}}
-						source={require('../assets/icon.png')} 
+						style={{marginBottom: 20}} 
+						source={require('../assets/icons/4klogo-76-2x.png')} 
 					/>
 					<FormInput 
 						inputStyle={styles.formInputStyle} 

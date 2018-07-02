@@ -8,7 +8,6 @@ import { Provider } from 'react-redux';
 
 import store from './store';
 import AuthScreen from './screens/AuthScreen';
-import LoginScreen from './screens/LoginScreen';
 import WelcomeScreen from './screens/WelcomeScreen';
 import MapScreen from './screens/MapScreen';
 import DeckScreen from './screens/DeckScreen';
@@ -16,6 +15,7 @@ import SettingsScreen from './screens/SettingsScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
+import LoginScreen from './screens/LoginScreen';
 
 export default class App extends React.Component {
     render() {
@@ -24,9 +24,9 @@ export default class App extends React.Component {
                 screen: createStackNavigator({
                     Welcome: WelcomeScreen,
                     Auth: AuthScreen,
-                    Login: LoginScreen,
                     Register: RegisterScreen,
-                    Forgot: ForgotPasswordScreen 
+                    Forgot: ForgotPasswordScreen,
+                    Login: LoginScreen
                 })
             },
             Main: {
