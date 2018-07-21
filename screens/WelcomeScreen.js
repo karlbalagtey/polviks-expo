@@ -17,19 +17,22 @@ class WelcomeScreen extends Component {
 
 	state = { token: null, access_token: null }
 
-	componentWillMount() {
-		let token = AsyncStorage.getItem('fb_token');
-		let access_token = AsyncStorage.getItem('access_token');
+	componentWillMount = async () => {
+		let token = await AsyncStorage.getItem('fb_token');
+		let access_token = await AsyncStorage.getItem('access_token');
 
 		if (token) {
 			this.props.navigation.navigate('Dashboard');
 			this.setState({ token });
-		} else if(access_token) {
+		}
+
+		if (access_token) {
 			this.props.navigation.navigate('Dashboard');
 			this.setState({ access_token });
-		} else {
-			this.setState({ token: false });
 		}
+
+		this.setState({ token: false });
+		this.setState({ access_token: false });
 	}
 
 	onSlidesComplete = () => {

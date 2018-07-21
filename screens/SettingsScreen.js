@@ -8,8 +8,18 @@ import { Button } from 'react-native-elements';
 
 class SettingScreen extends Component {
 
-	toLogout = () => {
-		AsyncStorage.removeItem('access_token');
+	toLogout = async () => {
+		let token = await AsyncStorage.getItem('token');
+		let access_token = await AsyncStorage.getItem('access_token');
+
+		if (token) {
+			await AsyncStorage.removeItem('token');
+		}
+
+		if (access_token) {
+			await AsyncStorage.removeItem('access_token');
+		}
+
 		this.props.navigation.navigate('Welcome');
 	}
 

@@ -7,6 +7,7 @@ import {
 	FACEBOOK_LOGIN_FAIL,
 	POLVIKS_LOGIN_SUCCESS,
 	POLVIKS_LOGIN_FAIL,
+	USER_LOGIN_SUCCESS,
 	RESET_ERROR_MESSAGE
 } from './types';
 
@@ -69,6 +70,13 @@ const doPolviksLogin = async (state, dispatch) => {
 	.catch((error) => {
 		return dispatch({ type: POLVIKS_LOGIN_FAIL, payload: error.response.data.message });
 	});
+};
+
+export const userLogout = () => (dispatch) => {
+	AsyncStorage.removeItem('access_token');
+	AsyncStorage.removeItem('token');
+
+	dispatch({ type: USER_LOGIN_SUCCESS });
 };
 
 export const resetError = () => (dispatch) => {

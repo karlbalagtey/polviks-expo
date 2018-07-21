@@ -15,7 +15,7 @@ class MapScreen extends Component {
 	onRegionChangeComplete = (region) => {
 		console.log(region);
 		this.setState({ region });
-		AsyncStorage.removeItem('fb_token');
+		// AsyncStorage.removeItem('fb_token');
 	}
 
 	render() {
