@@ -46,7 +46,11 @@ class LoginScreen extends Component {
 
 	onAuthComplete(props) {
 		if (props.token) {
-			this.props.navigation.navigate('Map');
+			this.props.navigation.navigate('Deck');
+		}
+
+		if (props.access_token) {
+			this.props.navigation.navigate('Deck');
 		}
 
 		if (props.error) {
