@@ -28,7 +28,7 @@ export const facebookLogin = () => async (dispatch) => {
 };
 
 const doFacebookLogin = async (dispatch) => {
-	let { type, token } = await Facebook.logInWithReadPermissionsAsync('211453826146304', {
+	let { type, token } = await Facebook.logInWithReadPermissionsAsync(config.fbAppId, {
 		permissions: ['public_profile']
 	});
 
@@ -36,7 +36,7 @@ const doFacebookLogin = async (dispatch) => {
 		return dispatch({ type: FACEBOOK_LOGIN_FAIL });
 	}
 
-	AsyncStorage.setItem('fb_token', token);
+	await AsyncStorage.setItem('fb_token', token);
 	dispatch({type: FACEBOOK_LOGIN_SUCCESS, payload: token });
 };
 
@@ -50,7 +50,7 @@ export const polviksLogin = (state) => async (dispatch) => {
 	}
 };
 
-const doPolviksLogin = (state, dispatch) => {
+const doPolviksLogin = async (state, dispatch) => {
 	const grantType = 'password',
 		  providers = 'customers';
 

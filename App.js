@@ -1,5 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { 
+    StyleSheet, 
+    Text, 
+    View,
+    AsyncStorage 
+} from 'react-native';
 import { 
     createBottomTabNavigator, 
     createStackNavigator 
@@ -16,6 +21,7 @@ import ReviewScreen from './screens/ReviewScreen';
 import RegisterScreen from './screens/RegisterScreen';
 import ForgotPasswordScreen from './screens/ForgotPasswordScreen';
 import LoginScreen from './screens/LoginScreen';
+import DashboardScreen from './screens/DashboardScreen';
 
 export default class App extends React.Component {
     render() {
@@ -31,6 +37,7 @@ export default class App extends React.Component {
             },
             Main: {
                 screen: createBottomTabNavigator({
+                    Dashboard: DashboardScreen,
                     Map: MapScreen,
                     Deck: DeckScreen,
                     Review: {

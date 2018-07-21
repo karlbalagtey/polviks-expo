@@ -41,7 +41,7 @@ class WelcomeScreen extends Component {
 	}
 
 	render() {
-		if (_.isNull(this.state.token) || _.isNull(this.state.access_token)) {
+		if (_.isNull(this.state.token)) {
 			return <AppLoading />
 		}
 

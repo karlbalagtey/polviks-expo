@@ -9,11 +9,11 @@ import {
 } from 'react-native';
 
 import { 
-	Icon, 
+	Icon,
 	Button,
 	FormLabel,
 	FormInput,
-	FormValidationMessage 
+	FormValidationMessage
 } from 'react-native-elements';
 
 import { connect } from 'react-redux';

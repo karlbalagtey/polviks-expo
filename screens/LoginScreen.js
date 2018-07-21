@@ -27,6 +27,11 @@ class LoginScreen extends Component {
 		this.onAuthComplete(this.props);
 	}
 
+	onFbLogin = () => {
+		this.props.facebookLogin(this.state);
+		this.onAuthComplete(this.props);
+	}
+
 	onRegisterPress = () => {
 		this.props.navigation.navigate('Register');
 	}
@@ -100,14 +105,13 @@ class LoginScreen extends Component {
 					justifyContent: 'space-around',
 					marginBottom: 50
 				}}>
-				    <Text>Log in with</Text>
 					<Icon
 						raised
 						name='facebook'
 						color='white'
 						containerStyle={{backgroundColor: '#3B5998'}}
 						type='font-awesome'
-						onPress={this.props.onComplete}
+						onPress={this.onFbLogin}
 					/>
 				</View>
 				<View style={{
